@@ -12,7 +12,9 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program. If not, see http://www.gnu.org/licenses/.
 
-############################################################################
+
+Weather Widget
+--------
 
 This Widget offers the possibility to display Weatherdata which are measured by
 the [Arduino Weatherstation][homepage] available at
