@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ScrollView_MainMenu" android:layout_width="match_parent" 
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1000dp" >
+
+        <TextView
+            android:id="@+id/topText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:gravity="center_horizontal"
+            android:text="@string/textSettings"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/IPAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topText"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/textIPAdress"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTextIPAddress"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/IPAddress"
+            android:layout_alignBottom="@id/IPAddress"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:inputType="text"
+            android:ems="10" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/HTTPCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextIPAddress"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/textHTTPCall"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTextHTTPCall"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/HTTPCall"
+            android:layout_alignBottom="@id/HTTPCall"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:inputType="text"
+            android:ems="10" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/buttonSave" />
+
+        <TextView
+            android:id="@+id/chooseSensor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/HTTPCall"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="@string/textChooseSensor" />
+
+        <CheckBox
+            android:id="@+id/checkBoxTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/save"
+            android:layout_below="@+id/chooseSensor"
+            android:layout_marginTop="25dp"
+            android:text="@string/Temperature" />
+
+        <EditText
+            android:id="@+id/editTextjson1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/editTextHTTPCall"
+            android:layout_below="@+id/checkBoxTemp"
+            android:inputType="text"
+            android:ems="10" />
+
+        <CheckBox
+            android:id="@+id/checkBoxPres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBoxTemp"
+            android:layout_below="@+id/editTextjson1"
+            android:layout_marginTop="14dp"
+            android:text="@string/Presssure" />
+
+        <TextView
+            android:id="@+id/textViewjson1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editTextjson1"
+            android:layout_alignBottom="@+id/editTextjson1"
+            android:layout_toLeftOf="@+id/checkBoxTemp"
+            android:text="@string/json" />
+
+        <EditText
+            android:id="@+id/editTextjson2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/editTextjson1"
+            android:layout_below="@+id/checkBoxPres"
+            android:inputType="text"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/textViewjson2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editTextjson2"
+            android:layout_alignBottom="@+id/editTextjson2"
+            android:layout_toLeftOf="@+id/checkBoxPres"
+            android:text="@string/json" />
+
+        <CheckBox
+            android:id="@+id/checkBoxHum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBoxPres"
+            android:layout_below="@+id/editTextjson2"
+            android:layout_marginTop="27dp"
+            android:text="@string/Humidity" />
+
+        <EditText
+            android:id="@+id/editTextjson3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextjson2"
+            android:layout_below="@+id/checkBoxHum"
+            android:inputType="text"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/textViewjson3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editTextjson3"
+            android:layout_alignBottom="@+id/editTextjson3"
+            android:layout_toLeftOf="@+id/checkBoxHum"
+            android:text="@string/json" />
+
+        <CheckBox
+            android:id="@+id/checkBoxOwn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBoxHum"
+            android:layout_below="@+id/editTextjson3"
+            android:layout_marginTop="25dp"
+            android:text="@string/ownSensor" />
+
+        <EditText
+            android:id="@+id/editTextjson4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/editTextjson3"
+            android:layout_below="@+id/checkBoxOwn1"
+            android:layout_marginTop="14dp"
+            android:inputType="text"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/textViewjson4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editTextjson4"
+            android:layout_alignBottom="@+id/editTextjson4"
+            android:layout_alignLeft="@+id/textViewjson3"
+            android:text="@string/json" />
+
+        <CheckBox
+            android:id="@+id/checkBoxOwn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkBoxOwn1"
+            android:layout_below="@+id/editTextjson4"
+            android:layout_marginTop="26dp"
+            android:text="@string/ownSensor" />
+
+        <EditText
+            android:id="@+id/editTextjson5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/editTextjson4"
+            android:layout_below="@+id/checkBoxOwn2"
+            android:inputType="text"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/textViewjson5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editTextjson5"
+            android:layout_alignBottom="@+id/editTextjson5"
+            android:layout_alignLeft="@+id/textViewjson4"
+            android:text="@string/json" />
+
+    </RelativeLayout>
+
+</ScrollView>

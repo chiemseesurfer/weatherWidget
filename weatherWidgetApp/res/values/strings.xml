@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WeatherWidget</string>
+    <string name="platzHalterTemp">Temp Value</string>
+	<string name="platzHalterDatum">Date</string>
+	
+	<string name="textIPAdress">IP-Addresse \n Hostname</string>
+	<string name="textHTTPCall">HTTP Call\nz.B. /android</string>
+	<string name="textSettings">Einstellungen</string>
+	
+	<string name="buttonSave">Speichern</string>
+	<string name="buttonSynchronize">Sync.</string>
+	<string name="toastSaved">Einstellungen gespeichert</string>
+	
+	<string name="Overview">Übersicht</string>
+	<string name="Temp">Temperature in °C</string>
+	<string name="Pres">Luftdruck in hPa</string>
+	<string name="Hum">Luftfeuchtigkeit in %</string>
+	<string name="Temperature">Temperatur</string>
+	<string name="Presssure">Luftdruck</string>
+	<string name="Humidity">Luftfeuchtigkeit</string>
+	
+	<string name="jsonTemperatur">temperature</string>
+	<string name="jsonLuftdruck">pressure</string>
+	<string name="jsonLuftfeuchtigkeit">humidity</string>
+	<string name="json">json Filter</string>
+	<string name="ownSensor">Eigener Sensor</string>
+	
+	<string name="textChooseSensor">Welche Sensoren sollen angezeigt werden?</string>
+</resources>
