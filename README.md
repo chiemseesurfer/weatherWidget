@@ -33,7 +33,7 @@ Screenshots
 ![Screensh1](/screenshots/widget-1.png)
 
 ## Widget Graph view
-![Screensh2](/screenshots/widget-2.png)
+![Screensh2](/screenshots/widget-3.png)
 
 ## Widget settings
-![Screensh3](/screenshots/widget-3.png)
+![Screensh3](/screenshots/widget-2.png)
