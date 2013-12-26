@@ -40,6 +40,8 @@ public class UpdateWidgetService extends Service {
 		
 		if(useFunc.haveNetworkConnection())
 			new MyWebservice().execute(this.getApplicationContext(), allWidgetIds, appWidgetManager);
+
+		//dbHelper.close();
 		
 		stopSelf();
 		

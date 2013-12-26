@@ -3,16 +3,9 @@
  */
 package weather.widget.graph;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.GraphViewSeries.GraphViewStyle;
-import com.jjoe64.graphview.LineGraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-
 import weather.widget.R;
 import weather.widget.utils.DataBaseHelper;
 import weather.widget.utils.UsefullFunctions;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,6 +14,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.jjoe64.graphview.GraphView.LegendAlign;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
+import com.jjoe64.graphview.LineGraphView;
 
 /**
  * WeatherGraphView class. \n
@@ -32,18 +32,20 @@ public class WeatherGraphView extends Activity {
 	
 	private UsefullFunctions useFunc = new UsefullFunctions(this);
 	private String TRUE = "1";
+	private Integer MAX_NUM_HORIZONTAL_LABELS = 7;
 
 	/** 
 	 * Called when activity is first created. 
 	 * 
-	 * fetches all sensor-values out of database and display graphic view of each sensor in own LinearLayout.
+	 * fetches all sensor-values out of database and display graphic view of 
+	 * each sensor in own LinearLayout.
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.graphs);
 		
-		int counter = 0;
+		int idCounter = 0;
 		
 		// IDs der LinearLayouts in ein Array schreiben, 
 		// damit keine Lücken zwischen den Layouts enstehen, 
@@ -53,89 +55,94 @@ public class WeatherGraphView extends Activity {
 		DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
 		dbHelper.openDataBase();
 		
-		GraphView graphView = new LineGraphView(this, getString(R.string.Overview));
+		// Display all graphs in one big overview
+		GraphView graphView = new LineGraphView(this,
+												getString(R.string.Overview));
 		
 		// Temperatur
 		if(dbHelper.getSetting(dbHelper.getCheckboxTempID()).equals(TRUE))
 		{
 			GraphViewData[] tempData = dbHelper.getData(dbHelper.getKeyTemp());
-			GraphViewSeries tempSeriesOverall = new GraphViewSeries(getString(R.string.Temperature), new GraphViewStyle(Color.RED, 3), tempData);
-			GraphViewSeries tempSeries = new GraphViewSeries(tempData);
-			graphView.addSeries(tempSeriesOverall);
+			GraphViewSeries tempSeries = new GraphViewSeries(getString(R.string.Temperature), new GraphViewSeriesStyle(Color.RED, 3), tempData);
+			graphView.addSeries(tempSeries);
 			
-			// graph with dynamically genereated horizontal and vertical labels
+			// graph with dynamically generated horizontal and vertical labels
 			GraphView graphViewTemp = new LineGraphView(
 					this // context
 					, getString(R.string.Temp) // heading
 			);
 			graphViewTemp.addSeries(tempSeries);
 			((LineGraphView) graphViewTemp).setDrawBackground(true);
-			LinearLayout TempLayout = (LinearLayout) findViewById(ids[counter]);
+			((LineGraphView) graphViewTemp).getGraphViewStyle().setNumHorizontalLabels(MAX_NUM_HORIZONTAL_LABELS);
+			LinearLayout TempLayout = (LinearLayout) findViewById(ids[idCounter]);
 			TempLayout.addView(graphViewTemp);
-			counter++;
+			idCounter++;
 		}
 		
 		// Luftdruck
 		if(dbHelper.getSetting(dbHelper.getCheckboxPresID()).equals(TRUE)){
 			GraphViewData[] presData = dbHelper.getData(dbHelper.getKeyPres());
-			GraphViewSeries presSeries = new GraphViewSeries(presData);
-			GraphViewSeries presSeriesOverall = new GraphViewSeries(getString(R.string.Presssure), new GraphViewStyle(Color.GREEN, 3), presData);
-			graphView.addSeries(presSeriesOverall);
+			GraphViewSeries presSeries = new GraphViewSeries(getString(R.string.Presssure), new GraphViewSeriesStyle(Color.GREEN, 3), presData);
+			graphView.addSeries(presSeries);
 			
 			GraphView graphViewPres = new LineGraphView(this, getString(R.string.Pres));
 			graphViewPres.addSeries(presSeries);
 			((LineGraphView) graphViewPres).setDrawBackground(true);
-			LinearLayout PresLayout = (LinearLayout) findViewById(ids[counter]);
+			((LineGraphView) graphViewPres).getGraphViewStyle().setNumHorizontalLabels(MAX_NUM_HORIZONTAL_LABELS);
+			LinearLayout PresLayout = (LinearLayout) findViewById(ids[idCounter]);
 			PresLayout.addView(graphViewPres);
-			counter++;
+			idCounter++;
 		}
 		
 		// Luftfeuchtigkeit
 		if(dbHelper.getSetting(dbHelper.getCheckboxHumID()).equals(TRUE)){
 			GraphViewData[] humData = dbHelper.getData(dbHelper.getKeyHum());
-			GraphViewSeries humSeriesOverall = new GraphViewSeries(getString(R.string.Humidity), new GraphViewStyle(Color.BLUE, 3), humData);
-			GraphViewSeries humSeries = new GraphViewSeries(humData);
-			graphView.addSeries(humSeriesOverall);
+			GraphViewSeries humSeries = new GraphViewSeries(getString(R.string.Humidity), new GraphViewSeriesStyle(Color.BLUE, 3), humData);
+			graphView.addSeries(humSeries);
 			
 			GraphView graphViewHum = new LineGraphView(this, getString(R.string.Hum));
 			graphViewHum.addSeries(humSeries);
 			((LineGraphView) graphViewHum).setDrawBackground(true);
-			LinearLayout HumLayout = (LinearLayout) findViewById(ids[counter]);
+			((LineGraphView) graphViewHum).getGraphViewStyle().setNumHorizontalLabels(MAX_NUM_HORIZONTAL_LABELS);
+			LinearLayout HumLayout = (LinearLayout) findViewById(ids[idCounter]);
 			HumLayout.addView(graphViewHum);
-			counter++;
+			idCounter++;
 		}
 		
 		// Eigener Sensor 1
 		if(dbHelper.getSetting(dbHelper.getCheckboxOwn1ID()).equals(TRUE)){
 			GraphViewData[] ownData = dbHelper.getData(dbHelper.getKeyOwn1());
-			GraphViewSeries ownSeriesOverall = new GraphViewSeries(getString(R.string.ownSensor), new GraphViewStyle(Color.GRAY, 3), ownData);
-			GraphViewSeries ownSeries = new GraphViewSeries(ownData);
-			graphView.addSeries(ownSeriesOverall);
+			GraphViewSeries ownSeries = new GraphViewSeries(getString(R.string.ownSensor), new GraphViewSeriesStyle(Color.GRAY, 3), ownData);
+			graphView.addSeries(ownSeries);
 			
 			GraphView graphViewOwn = new LineGraphView(this, getString(R.string.ownSensor));
 			graphViewOwn.addSeries(ownSeries);
 			((LineGraphView) graphViewOwn).setDrawBackground(true);
-			LinearLayout OwnLayout = (LinearLayout) findViewById(ids[counter]);
+			((LineGraphView) graphViewOwn).getGraphViewStyle().setNumHorizontalLabels(MAX_NUM_HORIZONTAL_LABELS);
+			LinearLayout OwnLayout = (LinearLayout) findViewById(ids[idCounter]);
 			OwnLayout.addView(graphViewOwn);
-			counter++;
+			idCounter++;
 		}
 		
 		// Eigener Sensor 2
 		if(dbHelper.getSetting(dbHelper.getCheckboxOwn2ID()).equals(TRUE)){
 			GraphViewData[] ownData = dbHelper.getData(dbHelper.getKeyOwn2());
-			GraphViewSeries ownSeriesOverall = new GraphViewSeries(getString(R.string.ownSensor), new GraphViewStyle(Color.WHITE, 3), ownData);
-			GraphViewSeries ownSeries = new GraphViewSeries(ownData);
-			graphView.addSeries(ownSeriesOverall);
+			GraphViewSeries ownSeries = new GraphViewSeries(getString(R.string.ownSensor), new GraphViewSeriesStyle(Color.WHITE, 3), ownData);
+			graphView.addSeries(ownSeries);
 			
 			GraphView graphViewOwn = new LineGraphView(this, getString(R.string.ownSensor));
 			graphViewOwn.addSeries(ownSeries);
 			((LineGraphView) graphViewOwn).setDrawBackground(true);
-			LinearLayout OwnLayout = (LinearLayout) findViewById(ids[counter]);
+			((LineGraphView) graphViewOwn).getGraphViewStyle().setNumHorizontalLabels(MAX_NUM_HORIZONTAL_LABELS);
+			LinearLayout OwnLayout = (LinearLayout) findViewById(ids[idCounter]);
 			OwnLayout.addView(graphViewOwn);
-			counter++;
+			idCounter++;
 		}
 		
 		graphView.setShowLegend(true);
+		graphView.setLegendAlign(LegendAlign.MIDDLE);
+		graphView.setLegendWidth(350);
+		((LineGraphView) graphView).getGraphViewStyle().setNumHorizontalLabels(MAX_NUM_HORIZONTAL_LABELS);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
 		layout.addView(graphView);
 		

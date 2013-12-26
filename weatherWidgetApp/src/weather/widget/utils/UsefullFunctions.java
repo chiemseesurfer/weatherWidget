@@ -153,6 +153,7 @@ public class UsefullFunctions {
 			manager.updateAppWidget(widgetId, remoteViews);
 			
 		}
+    	dbHelper.close();
     }
 
 

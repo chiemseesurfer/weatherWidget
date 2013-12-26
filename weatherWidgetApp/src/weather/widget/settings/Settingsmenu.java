@@ -104,6 +104,9 @@ public class Settingsmenu extends Activity{
    			public void onClick(View v) {
    				dbHelper.openDataBaseRW();
    				String ipAddr = ip.getText().toString();
+   				if(ipAddr.contains("http://"))
+   					ipAddr = ipAddr.replace("http://", "");
+   				
    				String httpCall = http.getText().toString();
    				dbHelper.setSetting(ipAddr, dbHelper.getIpID());
    				dbHelper.setSetting(httpCall, dbHelper.getHttpID());
@@ -142,6 +145,7 @@ public class Settingsmenu extends Activity{
    				
    				Toast.makeText(getApplicationContext(), getString(R.string.toastSaved), Toast.LENGTH_LONG).show();
    				
+   				// TODO: redirect to Mainpage or graphview
    			}
         });
     }
