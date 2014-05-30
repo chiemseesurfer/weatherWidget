@@ -112,7 +112,7 @@ public class WeatherGraphView extends Activity {
 		// Eigener Sensor 1
 		if(dbHelper.getSetting(dbHelper.getCheckboxOwn1ID()).equals(TRUE)){
 			GraphViewData[] ownData = dbHelper.getData(dbHelper.getKeyOwn1());
-			GraphViewSeries ownSeries = new GraphViewSeries(getString(R.string.ownSensor), new GraphViewSeriesStyle(Color.GRAY, 3), ownData);
+			GraphViewSeries ownSeries = new GraphViewSeries(dbHelper.getSetting(dbHelper.getJsonOwn1ID()), new GraphViewSeriesStyle(Color.GRAY, 3), ownData);
 			graphView.addSeries(ownSeries);
 			
 			GraphView graphViewOwn = new LineGraphView(this, getString(R.string.ownSensor));
@@ -127,7 +127,7 @@ public class WeatherGraphView extends Activity {
 		// Eigener Sensor 2
 		if(dbHelper.getSetting(dbHelper.getCheckboxOwn2ID()).equals(TRUE)){
 			GraphViewData[] ownData = dbHelper.getData(dbHelper.getKeyOwn2());
-			GraphViewSeries ownSeries = new GraphViewSeries(getString(R.string.ownSensor), new GraphViewSeriesStyle(Color.WHITE, 3), ownData);
+			GraphViewSeries ownSeries = new GraphViewSeries(dbHelper.getSetting(dbHelper.getJsonOwn2ID()), new GraphViewSeriesStyle(Color.WHITE, 3), ownData);
 			graphView.addSeries(ownSeries);
 			
 			GraphView graphViewOwn = new LineGraphView(this, getString(R.string.ownSensor));
