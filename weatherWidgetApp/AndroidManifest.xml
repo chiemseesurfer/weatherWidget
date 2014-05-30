@@ -28,15 +28,14 @@
             
         <activity
             android:name="weather.widget.settings.Settingsmenu"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:exported="true"
+            android:label="@string/app_name" >
         </activity>
         
         <activity 
             android:name="weather.widget.graph.WeatherGraphView"
+            android:exported="true"
             android:label="@string/app_name">
         </activity>
     </application>
-    
-
 </manifest>
