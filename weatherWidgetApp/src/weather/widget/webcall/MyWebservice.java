@@ -87,8 +87,9 @@ public class MyWebservice extends Thread {
 
 		try {
 			String webCall = dbHelper.getSetting(dbHelper.getIpID()) + dbHelper.getSetting(dbHelper.getHttpID());
+			if(!webCall.startsWith("http://")) webCall = "http://" + webCall;
 			HttpClient httpclient = new DefaultHttpClient();
-			HttpGet httpget = new HttpGet("http://"+webCall);
+			HttpGet httpget = new HttpGet(webCall);
 			
 			HttpResponse response = httpclient.execute(httpget);
 			HttpEntity entity = response.getEntity();

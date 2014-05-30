@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.jjoe64.graphview.GraphView.GraphViewData;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -484,11 +485,29 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 			, KEY_ID + "=?", VALUE_ACT_TABLE_ID, null, null, null, null);
 		
 		if (cursor.moveToFirst()){
-			String humidity = cursor.getString(2).replaceAll("\n", "");
+			String humidity = cursor.getString(2);
+			if( humidity == null){
+				humidity = "0";
+			}else{
+				humidity = humidity.replaceAll("\n", "");
+			}
 			String temp = cursor.getString(0);
+			if( temp == null){
+				temp = "0";
+			}
 			String pres = cursor.getString(1);
+			if( pres == null){
+				pres = "0";
+			}
 			String own1 = cursor.getString(3);
+			if( own1 == null){
+				own1 = "0";
+			}
 			String own2 = cursor.getString(4);
+			if( own2 == null){
+				own2 = "0";
+			}
+
 			
 			if(this.getSetting(SETTING_CHECKBOX_TEMP_ID).equals(TRUE) && !temp.equals("0"))
 				result.append(temp + " °C ");

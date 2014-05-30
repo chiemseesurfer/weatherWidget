@@ -131,7 +131,7 @@ public class UsefullFunctions {
 					PendingIntent.FLAG_UPDATE_CURRENT);
 			
 			remoteViews.setOnClickPendingIntent(R.id.buttonSynchronize, pendingIntent);
-			
+
 			/**
 			 * activate graph activity if widget is clicked
 			 */
@@ -139,8 +139,7 @@ public class UsefullFunctions {
 			PendingIntent setIntent  = PendingIntent.getActivity(context, 0, settingsIntent, 0);
 			remoteViews.setOnClickPendingIntent(R.id.tempValue, setIntent);
 			remoteViews.setOnClickPendingIntent(R.id.date, setIntent);
-			
-			
+
 			/* Idee für Alarm um kürzer als 30 min das Widget upzudaten */
 			// AlarmManager _alarm = null;
 			//_alarm.cancel(pendingIntent);
