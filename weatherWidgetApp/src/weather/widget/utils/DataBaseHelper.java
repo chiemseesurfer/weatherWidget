@@ -17,6 +17,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * DataBaseHelper class. \n
@@ -565,23 +566,35 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		int i = 0;
 		if(counter < max){
 			if(cursor.moveToPosition(counter)){
-				do{
-					list.add(new GraphViewData((double)i, Double.valueOf(cursor.getString(0))));
-					i++;
-				}while(cursor.moveToNext());
+				try{
+					do{
+						list.add(new GraphViewData((double)i, Double.valueOf(cursor.getString(0))));
+						i++;
+					}while(cursor.moveToNext());
+				}catch(Exception e){
+					Log.d("weather.widget", "line 575 -- " + e.getMessage());
+				}
 			}
 			if(cursor.moveToFirst()){
-				do{
-					list.add(new GraphViewData((double)i, Double.valueOf(cursor.getString(0))));
-					i++;
-				}while(cursor.moveToNext() && i < max);
+				try{
+					do{
+						list.add(new GraphViewData((double)i, Double.valueOf(cursor.getString(0))));
+						i++;
+					}while(cursor.moveToNext() && i < max);
+				}catch(Exception e){
+					Log.d("weather.widget", "line 585 -- " + e.getMessage());
+				}
 			}
 		}else{
 			if (cursor.moveToFirst()){
-				do{
-					list.add(new GraphViewData((double)i, Double.valueOf(cursor.getString(0))));
-					i++;
-				}while(cursor.moveToNext());
+				try{
+					do{
+						list.add(new GraphViewData((double)i, Double.valueOf(cursor.getString(0))));
+						i++;
+					}while(cursor.moveToNext());
+				}catch(Exception e){
+					Log.d("weather.widget", "line 596 -- " + e.getMessage());
+				}
 			}
 		}
 		
