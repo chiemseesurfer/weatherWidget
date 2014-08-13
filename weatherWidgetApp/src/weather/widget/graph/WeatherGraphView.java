@@ -115,7 +115,12 @@ public class WeatherGraphView extends Activity {
 			GraphViewSeries ownSeries = new GraphViewSeries(dbHelper.getSetting(dbHelper.getJsonOwn1ID()), new GraphViewSeriesStyle(Color.GRAY, 3), ownData);
 			graphView.addSeries(ownSeries);
 			
-			GraphView graphViewOwn = new LineGraphView(this, getString(R.string.ownSensor));
+			GraphView graphViewOwn = null;
+			if(dbHelper.getSetting(dbHelper.getJsonOwn1SCALEID()) != null) {
+				graphViewOwn = new LineGraphView(this, dbHelper.getSetting(dbHelper.getJsonOwn1ID()) + " in " + dbHelper.getSetting(dbHelper.getJsonOwn1SCALEID()));
+			}else {
+				graphViewOwn = new LineGraphView(this, dbHelper.getSetting(dbHelper.getJsonOwn1ID()));
+			}
 			graphViewOwn.addSeries(ownSeries);
 			((LineGraphView) graphViewOwn).setDrawBackground(true);
 			((LineGraphView) graphViewOwn).getGraphViewStyle().setNumHorizontalLabels(MAX_NUM_HORIZONTAL_LABELS);
@@ -130,7 +135,12 @@ public class WeatherGraphView extends Activity {
 			GraphViewSeries ownSeries = new GraphViewSeries(dbHelper.getSetting(dbHelper.getJsonOwn2ID()), new GraphViewSeriesStyle(Color.WHITE, 3), ownData);
 			graphView.addSeries(ownSeries);
 			
-			GraphView graphViewOwn = new LineGraphView(this, getString(R.string.ownSensor));
+			GraphView graphViewOwn = null;
+			if(dbHelper.getSetting(dbHelper.getJsonOwn2SCALEID()) != null) {
+				graphViewOwn = new LineGraphView(this, dbHelper.getSetting(dbHelper.getJsonOwn2ID()) + " in " + dbHelper.getSetting(dbHelper.getJsonOwn2SCALEID()));
+			}else {
+				graphViewOwn = new LineGraphView(this, dbHelper.getSetting(dbHelper.getJsonOwn2ID()));
+			}
 			graphViewOwn.addSeries(ownSeries);
 			((LineGraphView) graphViewOwn).setDrawBackground(true);
 			((LineGraphView) graphViewOwn).getGraphViewStyle().setNumHorizontalLabels(MAX_NUM_HORIZONTAL_LABELS);
