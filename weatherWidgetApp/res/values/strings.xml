@@ -5,27 +5,29 @@
     <string name="platzHalterTemp">Temp Value</string>
 	<string name="platzHalterDatum">Date</string>
 	
-	<string name="textIPAdress">IP-Addresse \n Hostname</string>
+	<string name="textIPAdress">ip-address \n Hostname</string>
 	<string name="textHTTPCall">HTTP Call\nz.B. /android</string>
-	<string name="textSettings">Einstellungen</string>
+	<string name="textSettings">settings</string>
+	<string name="textNoData">No Sensor selected.</string>
 	
-	<string name="buttonSave">Speichern</string>
+	<string name="buttonSave">save</string>
 	<string name="buttonSynchronize">Sync.</string>
-	<string name="toastSaved">Einstellungen gespeichert</string>
+	<string name="toastSaved">settings saved</string>
 	
-	<string name="Overview">Übersicht</string>
+	<string name="Overview">Overview</string>
 	<string name="Temp">Temperature in °C</string>
-	<string name="Pres">Luftdruck in hPa</string>
-	<string name="Hum">Luftfeuchtigkeit in %</string>
-	<string name="Temperature">Temperatur</string>
-	<string name="Presssure">Luftdruck</string>
-	<string name="Humidity">Luftfeuchtigkeit</string>
+	<string name="Pres">air pressure in hPa</string>
+	<string name="Hum">humidity in %</string>
+	<string name="Temperature">Temperature</string>
+	<string name="Presssure">Pressure</string>
+	<string name="Humidity">Humidity</string>
 	
 	<string name="jsonTemperatur">temperature</string>
 	<string name="jsonLuftdruck">pressure</string>
 	<string name="jsonLuftfeuchtigkeit">humidity</string>
 	<string name="json">json Filter</string>
-	<string name="ownSensor">Eigener Sensor</string>
+	<string name="json_scale">unit</string>
+	<string name="ownSensor">Own sensor</string>
 	
 	<string name="textChooseSensor">Welche Sensoren sollen angezeigt werden?</string>
 </resources>
