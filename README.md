@@ -1,4 +1,4 @@
-Copyright &copy; 2012-2013 Max Oberberger, Alexander Zenger
+Copyright &copy; 2012 Max Oberberger, Alexander Zenger
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
