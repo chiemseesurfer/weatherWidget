@@ -85,6 +85,8 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	private static String SETTING_CHECKBOX_OWN2_ID [] = {"checkBoxOwn2"};
 	private static String SETTING_JSON_OWN1_ID [] = {"jsonOwn1"};
 	private static String SETTING_JSON_OWN2_ID [] = {"jsonOwn2"};
+	private static String SETTING_JSON_OWN1_SCALE_ID [] = {"jsonOwn1_scale"};
+	private static String SETTING_JSON_OWN2_SCALE_ID [] = {"jsonOwn2_scale"};
 	private static String TRUE = "1";
 	private static String FALSE = "0";
 	private static Integer MAX_VALUE = 30;
@@ -122,6 +124,22 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	 */
 	public String[] getJsonOwn2ID(){
 		return SETTING_JSON_OWN2_ID;
+	}
+	
+	/**
+	 * get table id for json_scale-value of first sensor (jsonOwn1_scale)
+	 * @return String[] json database ID
+	 */
+	public String[] getJsonOwn1SCALEID(){
+		return SETTING_JSON_OWN1_SCALE_ID;
+	}
+	
+	/**
+	 * get table id for json_scale-value of second sensor (jsonOwn2_scale)
+	 * @return String[] json database id
+	 */
+	public String[] getJsonOwn2SCALEID(){
+		return SETTING_JSON_OWN2_SCALE_ID;
 	}
 	
 	/**
@@ -316,6 +334,8 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		ContentValues checkBoxOwn2 = new ContentValues();
 		ContentValues jsonOwn1 = new ContentValues();
 		ContentValues jsonOwn2 = new ContentValues();
+		ContentValues jsonOwn1_scale = new ContentValues();
+		ContentValues jsonOwn2_scale = new ContentValues();
 		
 		Cursor cursor = myDataBase.rawQuery("SELECT * FROM " + tableNameSettings, null);
 		if(!cursor.moveToFirst()){
@@ -342,6 +362,10 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 			jsonOwn1.put(KEY_VALUE, "0");
 			jsonOwn2.put(KEY_SETTING, "jsonOwn2");
 			jsonOwn2.put(KEY_VALUE, "0");
+			jsonOwn1_scale.put(KEY_SETTING, "jsonOwn1_scale");
+			jsonOwn1_scale.put(KEY_VALUE, "");
+			jsonOwn2_scale.put(KEY_SETTING, "jsonOwn2_scale");
+			jsonOwn2_scale.put(KEY_VALUE, "");
 		
 			myDataBase.insert(tableNameSettings, null, settings);
 			myDataBase.insert(tableNameSettings, null, httpSettings);
@@ -354,6 +378,8 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 			myDataBase.insert(tableNameSettings, null, checkBoxOwn2);
 			myDataBase.insert(tableNameSettings, null, jsonOwn1);
 			myDataBase.insert(tableNameSettings, null, jsonOwn2);
+			myDataBase.insert(tableNameSettings, null, jsonOwn1_scale);
+			myDataBase.insert(tableNameSettings, null, jsonOwn2_scale);
 		}
 	}
 
@@ -377,8 +403,12 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		ContentValues settings = new ContentValues();
 		
 		settings.put(KEY_VALUE, value);
-		
-		myDataBase.update(tableNameSettings, settings, KEY_SETTING + " = ?", setting);
+		if(this.getSetting(setting) == null){
+			settings.put(KEY_SETTING, setting[0]);
+			myDataBase.insert(tableNameSettings, null, settings);
+		}
+		else
+			myDataBase.update(tableNameSettings, settings, KEY_SETTING + " = ?", setting);
 	}
 	
 	/**
@@ -397,7 +427,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		
 		return result;
     }
-	
+    
 	/**
 	 * overwritten stanard method to close database
      */
@@ -483,42 +513,34 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		
 		Cursor cursor = myDataBase.query(tableNameActual, new String[] { KEY_TEMP, KEY_PRES, KEY_HUM, KEY_OWN1, KEY_OWN2 }
 			, KEY_ID + "=?", VALUE_ACT_TABLE_ID, null, null, null, null);
-		
+
 		if (cursor.moveToFirst()){
 			String humidity = cursor.getString(2);
-			if( humidity == null){
-				humidity = "0";
-			}else{
-				humidity = humidity.replaceAll("\n", "");
-			}
 			String temp = cursor.getString(0);
-			if( temp == null){
-				temp = "0";
-			}
 			String pres = cursor.getString(1);
-			if( pres == null){
-				pres = "0";
-			}
 			String own1 = cursor.getString(3);
-			if( own1 == null){
-				own1 = "0";
-			}
 			String own2 = cursor.getString(4);
-			if( own2 == null){
-				own2 = "0";
-			}
 
-			
-			if(this.getSetting(SETTING_CHECKBOX_TEMP_ID).equals(TRUE) && !temp.equals("0"))
+			if(this.getSetting(SETTING_CHECKBOX_TEMP_ID).equals(TRUE) && temp != null)
 				result.append(temp + " °C ");
-			if(this.getSetting(SETTING_CHECKBOX_PRES_ID).equals(TRUE) && !pres.equals("0"))
+			if(this.getSetting(SETTING_CHECKBOX_PRES_ID).equals(TRUE) && pres != null)
 				result.append(pres + " hPa ");
-			if(this.getSetting(SETTING_CHECKBOX_HUM_ID).equals(TRUE) && !humidity.equals("0"))
+			if(this.getSetting(SETTING_CHECKBOX_HUM_ID).equals(TRUE) && humidity != null){
+				humidity = humidity.replaceAll("\n", "");
 				result.append(humidity + " % ");
-			if(this.getSetting(SETTING_CHECKBOX_OWN1_ID).equals(TRUE) && !own1.equals("0"))
-				result.append(own1 + " ");
-			if(this.getSetting(SETTING_CHECKBOX_OWN2_ID).equals(TRUE) && !own2.equals("0"))
-				result.append(own2 + " ");
+			}
+			if(this.getSetting(SETTING_CHECKBOX_OWN1_ID).equals(TRUE) && own1 != null){
+				if(this.getSetting(SETTING_JSON_OWN1_SCALE_ID) == null)
+					result.append(own1 + " ");
+				else
+					result.append(own1 + " " + this.getSetting(SETTING_JSON_OWN1_SCALE_ID) + " ");
+			}
+			if(this.getSetting(SETTING_CHECKBOX_OWN2_ID).equals(TRUE) && own2 != null){
+				if(this.getSetting(SETTING_JSON_OWN2_SCALE_ID) == null)
+					result.append(own2);
+				else
+					result.append(own2 + " " + this.getSetting(SETTING_JSON_OWN2_SCALE_ID) + " ");
+			}
 		}
 		
 		cursor.close();

@@ -96,6 +96,7 @@
             android:inputType="text"
             android:ems="10" />
 
+        <!-- PRESSURE -->
         <CheckBox
             android:id="@+id/checkBoxPres"
             android:layout_width="wrap_content"
@@ -132,6 +133,7 @@
             android:layout_toLeftOf="@+id/checkBoxPres"
             android:text="@string/json" />
 
+        <!-- HUMIDITY -->
         <CheckBox
             android:id="@+id/checkBoxHum"
             android:layout_width="wrap_content"
@@ -159,6 +161,7 @@
             android:layout_toLeftOf="@+id/checkBoxHum"
             android:text="@string/json" />
 
+        <!-- OWN SENSOR 1 -->
         <CheckBox
             android:id="@+id/checkBoxOwn1"
             android:layout_width="wrap_content"
@@ -178,6 +181,16 @@
             android:inputType="text"
             android:ems="10" />
 
+        <EditText
+            android:id="@+id/editTextjson4_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/editTextjson3"
+            android:layout_below="@+id/editTextjson4"
+            android:layout_marginTop="14dp"
+            android:inputType="text"
+            android:ems="10" />
+
         <TextView
             android:id="@+id/textViewjson4"
             android:layout_width="wrap_content"
@@ -187,12 +200,22 @@
             android:layout_alignLeft="@+id/textViewjson3"
             android:text="@string/json" />
 
+        <TextView
+            android:id="@+id/textViewjson4_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editTextjson4_scale"
+            android:layout_alignBottom="@+id/editTextjson4_scale"
+            android:layout_alignLeft="@+id/textViewjson3"
+            android:text="@string/json_scale" />
+
+        <!-- OWN SENSOR 2 -->
         <CheckBox
             android:id="@+id/checkBoxOwn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/checkBoxOwn1"
-            android:layout_below="@+id/editTextjson4"
+            android:layout_below="@+id/editTextjson4_scale"
             android:layout_marginTop="26dp"
             android:text="@string/ownSensor" />
 
@@ -205,6 +228,15 @@
             android:inputType="text"
             android:ems="10" />
 
+        <EditText
+            android:id="@+id/editTextjson5_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/editTextjson4"
+            android:layout_below="@+id/editTextjson5"
+            android:inputType="text"
+            android:ems="10" />
+
         <TextView
             android:id="@+id/textViewjson5"
             android:layout_width="wrap_content"
@@ -213,6 +245,15 @@
             android:layout_alignBottom="@+id/editTextjson5"
             android:layout_alignLeft="@+id/textViewjson4"
             android:text="@string/json" />
+
+        <TextView
+            android:id="@+id/textViewjson5_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editTextjson5_scale"
+            android:layout_alignBottom="@+id/editTextjson5_scale"
+            android:layout_alignLeft="@+id/textViewjson4"
+            android:text="@string/json_scale" />
 
     </RelativeLayout>
 

@@ -12,6 +12,19 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
+/** \mainpage Android Weather Widget
+ *
+ * \section intro_sec Introduction
+ *
+ * This Widget offers the possibility to display Weatherdata which are measured by
+ * the Arduino Weatherstation.
+ *
+ * \section install_sec Installation
+ *
+ * The Widget is available at the Google Play Store.
+ *
+ */
+
 /**
  * WeatherWidgetActivity class. \n
  * start class for Weather Widget.
@@ -43,7 +56,7 @@ public class WeatherWidgetActivity extends AppWidgetProvider {
 		Intent intent = new Intent(context.getApplicationContext(),
 				UpdateWidgetService.class);
 		intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, allWidgetIds);
-
+	    
 		// Update the widgets via the service
 		context.startService(intent);
 	}

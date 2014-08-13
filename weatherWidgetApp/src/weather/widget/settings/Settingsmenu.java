@@ -29,6 +29,8 @@ public class Settingsmenu extends Activity{
 	private EditText jsonHum = null;
 	private EditText jsonOwn1 = null;
 	private EditText jsonOwn2 = null;
+	private EditText jsonOwn1_scale = null;
+	private EditText jsonOwn2_scale = null;
 	private CheckBox boxTemp = null;
 	private CheckBox boxPres = null;
 	private CheckBox boxHum = null;
@@ -62,6 +64,8 @@ public class Settingsmenu extends Activity{
         jsonHum = (EditText) findViewById(R.id.editTextjson3);
         jsonOwn1 = (EditText) findViewById(R.id.editTextjson4);
         jsonOwn2 = (EditText) findViewById(R.id.editTextjson5);
+        jsonOwn1_scale = (EditText) findViewById(R.id.editTextjson4_scale);
+        jsonOwn2_scale = (EditText) findViewById(R.id.editTextjson5_scale);
         
         TextView text = (TextView) findViewById(R.id.topText);
         text.setFocusable(true);
@@ -83,10 +87,12 @@ public class Settingsmenu extends Activity{
         if(dbHelper.getSetting(dbHelper.getCheckboxOwn1ID()).equals(TRUE)){
         	boxOwn1.setChecked(true);
         	jsonOwn1.setText(dbHelper.getSetting(dbHelper.getJsonOwn1ID()));
+        	jsonOwn1_scale.setText(dbHelper.getSetting(dbHelper.getJsonOwn1SCALEID()));
         }
         if(dbHelper.getSetting(dbHelper.getCheckboxOwn2ID()).equals(TRUE)){
         	boxOwn2.setChecked(true);
         	jsonOwn2.setText(dbHelper.getSetting(dbHelper.getJsonOwn2ID()));
+        	jsonOwn2_scale.setText(dbHelper.getSetting(dbHelper.getJsonOwn2SCALEID()));
         }
         
         ip = (EditText) findViewById(R.id.editTextIPAddress);
@@ -129,16 +135,20 @@ public class Settingsmenu extends Activity{
    				if(boxOwn1.isChecked()){
    					dbHelper.setSetting(TRUE, dbHelper.getCheckboxOwn1ID());
    					dbHelper.setSetting(jsonOwn1.getText().toString(), dbHelper.getJsonOwn1ID());
+   					dbHelper.setSetting(jsonOwn1_scale.getText().toString(), dbHelper.getJsonOwn1SCALEID());
    				}else{
    					dbHelper.setSetting(FALSE, dbHelper.getCheckboxOwn1ID());
    					dbHelper.setSetting(jsonOwn1.getText().toString(), dbHelper.getJsonOwn1ID());
+   					dbHelper.setSetting(jsonOwn1_scale.getText().toString(), dbHelper.getJsonOwn1SCALEID());
    				}
    				if(boxOwn2.isChecked()){
    					dbHelper.setSetting(TRUE, dbHelper.getCheckboxOwn2ID());
    					dbHelper.setSetting(jsonOwn2.getText().toString(), dbHelper.getJsonOwn2ID());
+   					dbHelper.setSetting(jsonOwn2_scale.getText().toString(), dbHelper.getJsonOwn2SCALEID());
    				}else{
    					dbHelper.setSetting(FALSE, dbHelper.getCheckboxOwn2ID());
    					dbHelper.setSetting(jsonOwn2.getText().toString(), dbHelper.getJsonOwn2ID());
+   					dbHelper.setSetting(jsonOwn2_scale.getText().toString(), dbHelper.getJsonOwn2SCALEID());
    				}
    				
    				dbHelper.close();
